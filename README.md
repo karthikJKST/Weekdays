@@ -87,6 +87,22 @@ Rather than being a simple CRUD application, WeekDays was designed as a complete
 
 ---
 
+## Screenshots
+
+| Dashboard | Projects | Tasks |
+|:---:|:---:|:---:|
+| ![Dashboard](./screenshots/02-dashboard.png) | ![Projects](./screenshots/03-projects.png) | ![Tasks](./screenshots/04-tasks.png) |
+
+| Calendar | Timeline | Analytics |
+|:---:|:---:|:---:|
+| ![Calendar](./screenshots/05-calendar.png) | ![Timeline](./screenshots/06-timeline.png) | ![Analytics](./screenshots/07-analytics.png) |
+
+| Settings | Notifications | Login |
+|:---:|:---:|:---:|
+| ![Settings](./screenshots/08-settings.png) | ![Notifications](./screenshots/09-notifications.png) | ![Login](./screenshots/01-login.png) |
+
+---
+
 ## Tech Stack
 
 | Layer      | Technology |
@@ -283,14 +299,13 @@ See [docs/deployment.md](./docs/deployment.md) for step-by-step deployment instr
 ## Future Improvements
 
 - **Real-time collaboration** — WebSocket-based live updates for tasks and Kanban boards
-- **Notifications** — Email and in-app notifications for deadlines, assignments, and mentions
 - **File attachments** — Upload and attach files to tasks and calendar events
 - **Time tracking** — Start/stop timer for tasks with automatic billing
 - **Team management** — Invite members, assign roles, manage permissions
 - **Mobile app** — React Native companion app for on-the-go access
 - **Integrations** — GitHub, GitLab, Slack, Jira connectors
 - **Dark/light theme** — Toggle between dark and light mode (currently dark-first)
-- - **Role-based access control (RBAC)** — Team roles with fine-grained permissions
+- **Role-based access control (RBAC)** — Team roles with fine-grained permissions
 - **Audit logs** — Track project and task changes over time
 
 ---
