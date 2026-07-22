@@ -9,6 +9,7 @@ import {
   Settings,
   ChevronLeft,
 } from 'lucide-react'
+import { Logomark } from '../Logo'
 
 const navigation = [
   { label: 'Dashboard', href: '/', icon: LayoutDashboard },
@@ -57,9 +58,7 @@ export function Sidebar({ isCollapsed, isMobileOpen, onClose, onToggleCollapse }
         {/* Logo area */}
         <div className="flex h-14 shrink-0 items-center border-b border-slate-800/60 px-4">
           <a href="/" className="flex items-center gap-2.5 overflow-hidden">
-            <span className="grid size-8 shrink-0 place-items-center rounded-lg bg-indigo-500 text-sm font-semibold text-white shadow-sm shadow-indigo-500/20">
-              W
-            </span>
+            <Logomark size={32} />
             <span
               className={`whitespace-nowrap text-sm font-semibold tracking-wide text-indigo-300 transition-opacity duration-200 ${
                 isCollapsed ? 'opacity-0' : 'opacity-100'

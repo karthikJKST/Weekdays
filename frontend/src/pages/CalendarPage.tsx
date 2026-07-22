@@ -313,7 +313,12 @@ export function CalendarPage() {
 
             {/* Empty state for views with no events */}
             {filteredEvents.length === 0 && !searchQuery && view !== 'agenda' && (
-              <EmptyCalendar type="empty" />
+              <EmptyCalendar type="empty" onCreateClick={() => {
+                const d = new Date()
+                setYear(d.getFullYear())
+                setMonth(d.getMonth())
+                setSelectedDate(d)
+              }} />
             )}
             {filteredEvents.length === 0 && !searchQuery && view === 'agenda' && (
               <EmptyCalendar type="no-upcoming" />

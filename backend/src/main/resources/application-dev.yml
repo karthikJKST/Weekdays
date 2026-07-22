@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:weekdays;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  flyway:
+    enabled: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+app:
+  cors:
+    allowed-origin: http://localhost:5173
+  jwt:
+    secret: dev-secret-key-that-is-at-least-thirty-two-characters-long
+    access-token-minutes: 1440
+    refresh-token-days: 30

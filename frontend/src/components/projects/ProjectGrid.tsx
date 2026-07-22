@@ -12,6 +12,7 @@ interface ProjectGridProps {
   onEdit: (project: Project) => void
   onDelete: (project: Project) => void
   onCreateClick: () => void
+  onImportClick?: () => void
   onClearFilters: () => void
   onRetry: () => void
 }
@@ -24,6 +25,7 @@ export function ProjectGrid({
   onEdit,
   onDelete,
   onCreateClick,
+  onImportClick,
   onClearFilters,
   onRetry,
 }: ProjectGridProps) {
@@ -57,7 +59,7 @@ export function ProjectGrid({
   }
 
   if (projects.length === 0) {
-    return <EmptyProjects type="empty" onCreateClick={onCreateClick} />
+    return <EmptyProjects type="empty" onCreateClick={onCreateClick} onImportClick={onImportClick} />
   }
 
   return (

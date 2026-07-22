@@ -1,11 +1,12 @@
-import { Route, SearchX } from 'lucide-react'
+import { SearchX, GitGraph, Plus } from 'lucide-react'
 
 interface EmptyTimelineProps {
   type?: 'empty' | 'no-results'
+  onCreateClick?: () => void
   onClearFilters?: () => void
 }
 
-export function EmptyTimeline({ type = 'empty', onClearFilters }: EmptyTimelineProps) {
+export function EmptyTimeline({ type = 'empty', onCreateClick, onClearFilters }: EmptyTimelineProps) {
   if (type === 'no-results') {
     return (
       <div className="flex flex-col items-center gap-4 py-16 text-center">
@@ -14,7 +15,7 @@ export function EmptyTimeline({ type = 'empty', onClearFilters }: EmptyTimelineP
         </div>
         <div>
           <p className="text-sm font-medium text-slate-300">No matching items</p>
-          <p className="mt-1 text-xs text-slate-500">Try adjusting your search or filters.</p>
+          <p className="mt-1 max-w-xs text-xs text-slate-500">Try adjusting your search or filters to find what you&apos;re looking for.</p>
         </div>
         {onClearFilters && (
           <button onClick={onClearFilters} className="rounded-lg border border-slate-700/60 px-3 py-1.5 text-xs text-slate-400 transition hover:border-slate-600">Clear filters</button>
@@ -26,12 +27,23 @@ export function EmptyTimeline({ type = 'empty', onClearFilters }: EmptyTimelineP
   return (
     <div className="flex flex-col items-center gap-5 py-20 text-center">
       <div className="grid size-20 place-items-center rounded-2xl bg-indigo-500/10">
-        <Route size={40} className="text-indigo-400" />
+        <GitGraph size={40} className="text-indigo-400" />
       </div>
       <div>
-        <p className="text-lg font-medium text-slate-200">No timeline data</p>
-        <p className="mt-1 text-sm text-slate-500">Create projects and tasks to see them on the timeline.</p>
+        <p className="text-lg font-medium text-slate-200">Your team&apos;s activity will appear here</p>
+        <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-slate-500">
+          Create projects, assign tasks, and schedule events. Everything your team does will show up on this timeline automatically.
+        </p>
       </div>
+      {onCreateClick && (
+        <button
+          onClick={onCreateClick}
+          className="inline-flex items-center gap-2 rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-400"
+        >
+          <Plus size={16} />
+          Create your first project
+        </button>
+      )}
     </div>
   )
 }

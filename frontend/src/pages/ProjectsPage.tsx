@@ -414,6 +414,18 @@ export function ProjectsPage() {
             onEdit={openEditModal}
             onDelete={setDeleteTarget}
             onCreateClick={openCreateModal}
+            onImportClick={() => {
+              const input = document.createElement('input')
+              input.type = 'file'
+              input.accept = '.json'
+              input.style.display = 'none'
+              document.body.appendChild(input)
+              input.onchange = () => {
+                document.body.removeChild(input)
+                // Import logic will be implemented in a future iteration
+              }
+              input.click()
+            }}
             onClearFilters={handleClearFilters}
             onRetry={handleRetry}
           />

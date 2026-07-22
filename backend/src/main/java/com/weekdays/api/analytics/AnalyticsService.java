@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AnalyticsService {
@@ -29,6 +30,7 @@ public class AnalyticsService {
         this.taskRepository = taskRepository;
     }
 
+    @Transactional(readOnly = true)
     public AnalyticsResponse getDashboard(UUID ownerId) {
         // Aggregation queries for efficiency
         long totalProjects = projectRepository.countByOwnerIdAndArchivedFalse(ownerId);

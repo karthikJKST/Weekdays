@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { Loader2 } from 'lucide-react'
+import { Logo } from './components/Logo'
 import { useAuthStore } from './store/authStore'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { PublicRoute } from './components/PublicRoute'
@@ -20,9 +21,7 @@ function LoadingScreen() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-[#0b0f19]">
       <div className="flex flex-col items-center gap-3">
-        <span className="grid size-12 place-items-center rounded-2xl bg-indigo-500 text-xl font-semibold text-white shadow-lg shadow-indigo-500/25">
-          W
-        </span>
+        <Logo size={48} />
         <Loader2 size={20} className="animate-spin text-indigo-400" />
       </div>
     </div>
