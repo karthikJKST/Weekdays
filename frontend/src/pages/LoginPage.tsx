@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { Eye, EyeOff, Loader2, LogIn } from 'lucide-react'
+import { Eye, EyeOff, Loader2, LogIn, Sparkles } from 'lucide-react'
+import { Logo } from '../components/Logo'
 import { useAuthStore } from '../store/authStore'
 import { getErrorDetail } from '../utils/error'
 
@@ -15,10 +16,12 @@ export function LoginPage() {
   const login = useAuthStore((s) => s.login)
   const [showPassword, setShowPassword] = useState(false)
   const [serverError, setServerError] = useState<string | null>(null)
+  const [demoLoading, setDemoLoading] = useState(false)
 
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
     defaultValues: { email: '', password: '' },
@@ -39,10 +42,31 @@ export function LoginPage() {
     }
   }
 
+  const handleDemoLogin = async () => {
+    setServerError(null)
+    setDemoLoading(true)
+    setValue('email', 'demo@weekdays.dev')
+    setValue('password', 'Demo@123')
+    try {
+      await login('demo@weekdays.dev', 'Demo@123')
+      navigate('/', { replace: true })
+    } catch (err) {
+      const detail = getErrorDetail(err)
+      if (detail) {
+        setServerError(detail.detail ?? 'An unexpected error occurred.')
+      } else {
+        setServerError('Unable to connect to the server.')
+      }
+    } finally {
+      setDemoLoading(false)
+    }
+  }
+
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white">Welcome back</h1>
+      <div className="mb-6 flex flex-col items-center text-center">
+        <Logo size={48} />
+        <h1 className="mt-4 text-2xl font-semibold text-white">Welcome back</h1>
         <p className="mt-1.5 text-sm text-slate-400">Sign in to your WeekDays account.</p>
       </div>
 
@@ -51,6 +75,43 @@ export function LoginPage() {
           {serverError}
         </div>
       )}
+
+      {/* Demo account quick login */}
+      <div className="mb-6 rounded-xl border border-indigo-500/15 bg-indigo-500/5 p-4">
+        <div className="flex items-start gap-3">
+          <span className="mt-0.5 grid size-8 shrink-0 place-items-center rounded-lg bg-indigo-500/15 text-indigo-400">
+            <Sparkles size={16} />
+          </span>
+          <div className="flex-1">
+            <p className="text-sm font-medium text-indigo-200">Demo Account</p>
+            <p className="mt-0.5 text-xs text-indigo-400/80">
+              demo@weekdays.dev
+            </p>
+            <button
+              type="button"
+              onClick={handleDemoLogin}
+              disabled={demoLoading}
+              className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-500 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-indigo-400 disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {demoLoading ? (
+                <Loader2 size={13} className="animate-spin" />
+              ) : (
+                <LogIn size={13} />
+              )}
+              {demoLoading ? 'Signing in...' : 'Login as Demo'}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative mb-6">
+        <div className="absolute inset-0 flex items-center">
+          <div className="w-full border-t border-slate-800" />
+        </div>
+        <div className="relative flex justify-center text-xs">
+          <span className="bg-[#0b0f19] px-2 text-slate-600">or sign in manually</span>
+        </div>
+      </div>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
         <div>

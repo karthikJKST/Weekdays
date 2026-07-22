@@ -1,12 +1,13 @@
-import { FolderKanban, SearchX, Plus } from 'lucide-react'
+import { FolderKanban, SearchX, Plus, Upload } from 'lucide-react'
 
 interface EmptyProjectsProps {
   type?: 'empty' | 'no-results'
   onCreateClick?: () => void
+  onImportClick?: () => void
   onClearFilters?: () => void
 }
 
-export function EmptyProjects({ type = 'empty', onCreateClick, onClearFilters }: EmptyProjectsProps) {
+export function EmptyProjects({ type = 'empty', onCreateClick, onImportClick, onClearFilters }: EmptyProjectsProps) {
   if (type === 'no-results') {
     return (
       <div className="flex flex-col items-center gap-5 rounded-2xl border border-dashed border-slate-800/50 bg-[#0e1421] px-6 py-16">
@@ -15,7 +16,7 @@ export function EmptyProjects({ type = 'empty', onCreateClick, onClearFilters }:
         </div>
         <div className="text-center">
           <h3 className="text-lg font-medium text-slate-300">No matching projects</h3>
-          <p className="mt-1.5 text-sm text-slate-500">
+          <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-slate-500">
             Try adjusting your search or filter to find what you&apos;re looking for.
           </p>
         </div>
@@ -37,20 +38,31 @@ export function EmptyProjects({ type = 'empty', onCreateClick, onClearFilters }:
         <FolderKanban size={40} className="text-indigo-400" />
       </div>
       <div className="text-center">
-        <h3 className="text-xl font-semibold text-slate-200">No projects yet</h3>
-        <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-slate-500">
-          Create your first project to start tracking engineering work, assigning tasks, and shipping faster.
+        <h3 className="text-xl font-semibold text-slate-200">Start managing your engineering work</h3>
+        <p className="mt-1.5 max-w-md text-sm leading-relaxed text-slate-500">
+          Create a project to organize tasks, set deadlines, track progress, and ship faster with your team.
         </p>
       </div>
-      {onCreateClick && (
-        <button
-          onClick={onCreateClick}
-          className="inline-flex items-center gap-2 rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-400"
-        >
-          <Plus size={16} />
-          Create your first project
-        </button>
-      )}
+      <div className="flex flex-wrap items-center justify-center gap-3">
+        {onCreateClick && (
+          <button
+            onClick={onCreateClick}
+            className="inline-flex items-center gap-2 rounded-xl bg-indigo-500 px-5 py-2.5 text-sm font-medium text-white shadow-lg shadow-indigo-500/20 transition hover:bg-indigo-400"
+          >
+            <Plus size={16} />
+            Create your first project
+          </button>
+        )}
+        {onImportClick && (
+          <button
+            onClick={onImportClick}
+            className="inline-flex items-center gap-2 rounded-xl border border-slate-700/60 px-5 py-2.5 text-sm font-medium text-slate-300 transition hover:border-slate-600 hover:text-white"
+          >
+            <Upload size={16} />
+            Import project
+          </button>
+        )}
+      </div>
     </div>
   )
 }

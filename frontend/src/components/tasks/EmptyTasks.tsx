@@ -15,7 +15,7 @@ export function EmptyTasks({ type = 'empty', onCreateClick, onClearFilters }: Em
         </div>
         <div className="text-center">
           <h3 className="text-lg font-medium text-slate-300">No matching tasks</h3>
-          <p className="mt-1.5 text-sm text-slate-500">
+          <p className="mt-1.5 max-w-xs text-sm leading-relaxed text-slate-500">
             Try adjusting your search or filters to find what you&apos;re looking for.
           </p>
         </div>
@@ -37,9 +37,9 @@ export function EmptyTasks({ type = 'empty', onCreateClick, onClearFilters }: Em
         <ListTodo size={40} className="text-indigo-400" />
       </div>
       <div className="text-center">
-        <h3 className="text-xl font-semibold text-slate-200">No tasks yet</h3>
+        <h3 className="text-xl font-semibold text-slate-200">Create your first task</h3>
         <p className="mt-1.5 max-w-sm text-sm leading-relaxed text-slate-500">
-          Create your first task to start tracking work across your projects.
+          Break down your projects into actionable tasks. Assign them to team members, set priorities, and track progress.
         </p>
       </div>
       {onCreateClick && (

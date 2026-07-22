@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TimelineService {
@@ -33,6 +34,7 @@ public class TimelineService {
         this.calendarRepository = calendarRepository;
     }
 
+    @Transactional(readOnly = true)
     public TimelineResponse getTimeline(UUID ownerId, int page, int size) {
         List<TimelineResponse.TimelineActivity> allActivities = new ArrayList<>();
 

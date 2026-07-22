@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Sparkles } from 'lucide-react'
+import { Logo, Logomark } from './Logo'
 
 interface AuthLayoutProps {
   children: ReactNode
@@ -15,9 +16,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
 
         <div className="relative">
           <div className="flex items-center gap-3">
-            <span className="grid size-10 place-items-center rounded-xl bg-indigo-500 text-lg font-semibold text-white shadow-lg shadow-indigo-500/25">
-              W
-            </span>
+            <Logo size={40} />
             <span className="text-sm font-semibold tracking-wide text-indigo-300">WEEKDAYS</span>
           </div>
         </div>
@@ -31,9 +30,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
             &ldquo;The best engineering teams ship with clarity, not chaos.&rdquo;
           </blockquote>
           <div className="flex items-center gap-3 text-sm text-slate-500">
-            <span className="flex size-8 items-center justify-center rounded-full bg-slate-800 text-xs font-medium text-slate-300">
-              W
-            </span>
+            <Logomark size={32} />
             <span>WeekDays Team</span>
           </div>
         </div>
@@ -48,9 +45,7 @@ export function AuthLayout({ children }: AuthLayoutProps) {
         <div className="w-full max-w-sm">
           {/* Mobile logo */}
           <div className="mb-8 flex items-center justify-center gap-2 lg:hidden">
-            <span className="grid size-9 place-items-center rounded-lg bg-indigo-500 text-sm font-semibold text-white shadow-lg shadow-indigo-500/25">
-              W
-            </span>
+            <Logo size={36} />
             <span className="text-sm font-semibold tracking-wide text-indigo-300">WEEKDAYS</span>
           </div>
           {children}

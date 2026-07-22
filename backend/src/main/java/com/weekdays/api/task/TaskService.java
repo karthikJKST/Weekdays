@@ -25,6 +25,7 @@ public class TaskService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getAllTasks(UUID ownerId, String projectId, boolean includeArchived) {
         List<Task> tasks;
         if (projectId != null && !projectId.isBlank()) {
@@ -40,35 +41,42 @@ public class TaskService {
         return tasks.stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public TaskResponse getTask(UUID id, UUID ownerId) {
         return mapper.toResponse(findTask(id, ownerId));
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getTodaysTasks(UUID ownerId) {
         return repository.findAllByOwnerIdAndDueDateAndArchivedFalse(ownerId, LocalDate.now())
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getUpcomingTasks(UUID ownerId) {
         return repository.findUpcomingByOwnerId(ownerId, LocalDate.now())
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getOverdueTasks(UUID ownerId) {
         return repository.findAllByOwnerIdAndDueDateBeforeAndArchivedFalse(ownerId, LocalDate.now())
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getCompletedTasks(UUID ownerId) {
         return repository.findAllByOwnerIdAndStatusAndArchivedFalseOrderByUpdatedAtDesc(ownerId, TaskStatus.done)
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> getArchivedTasks(UUID ownerId) {
         return repository.findAllByOwnerIdAndArchivedTrueOrderByUpdatedAtDesc(ownerId)
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> searchTasks(UUID ownerId, String query) {
         return repository.searchByOwnerId(ownerId, query)
                 .stream().map(mapper::toResponse).toList();

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { ChevronDown, CheckCircle, PlusCircle, Edit, Calendar, FolderPlus, Loader2 } from 'lucide-react'
 import { PageContainer } from '../components/ui/PageContainer'
 import { TimelineSkeleton } from '../components/timeline/TimelineSkeleton'
@@ -54,6 +55,7 @@ function groupByDate(items: TimelineActivity[]): Map<string, TimelineActivity[]>
 }
 
 export function TimelinePage() {
+  const navigate = useNavigate()
   const [page, setPage] = useState(0)
   const [allItems, setAllItems] = useState<TimelineActivity[]>([])
   const [hasMore, setHasMore] = useState(true)
@@ -94,7 +96,7 @@ export function TimelinePage() {
   if (allItems.length === 0) {
     return (
       <PageContainer title="Activity Timeline" description="">
-        <EmptyTimeline />
+        <EmptyTimeline onCreateClick={() => navigate('/projects')} />
       </PageContainer>
     )
   }

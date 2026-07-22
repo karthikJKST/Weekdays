@@ -31,15 +31,18 @@ public class CalendarService {
         this.mapper = mapper;
     }
 
+    @Transactional(readOnly = true)
     public List<EventResponse> getAllEvents(UUID ownerId) {
         return repository.findAllByOwnerIdOrderByStartTimeAsc(ownerId)
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public EventResponse getEvent(UUID id, UUID ownerId) {
         return mapper.toResponse(findEvent(id, ownerId));
     }
 
+    @Transactional(readOnly = true)
     public List<EventResponse> getMonthEvents(UUID ownerId, int year, int month) {
         LocalDateTime from = LocalDateTime.of(year, month, 1, 0, 0);
         LocalDateTime to = from.plusMonths(1).minusSeconds(1);
@@ -47,6 +50,7 @@ public class CalendarService {
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<EventResponse> getWeekEvents(UUID ownerId, LocalDate date) {
         LocalDateTime weekStart = date.atStartOfDay();
         LocalDateTime weekEnd = date.plusDays(7).atStartOfDay().minusSeconds(1);
@@ -54,6 +58,7 @@ public class CalendarService {
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<EventResponse> getDayEvents(UUID ownerId, LocalDate date) {
         LocalDateTime dayStart = date.atStartOfDay();
         LocalDateTime dayEnd = date.atTime(LocalTime.MAX);
@@ -61,6 +66,7 @@ public class CalendarService {
                 .stream().map(mapper::toResponse).toList();
     }
 
+    @Transactional(readOnly = true)
     public List<EventResponse> getRangeEvents(UUID ownerId, LocalDateTime from, LocalDateTime to) {
         return repository.findAllByOwnerIdAndStartTimeBetweenOrderByStartTimeAsc(ownerId, from, to)
                 .stream().map(mapper::toResponse).toList();
