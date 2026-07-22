@@ -1,0 +1,61 @@
+package com.weekdays.api.auth;
+
+import com.weekdays.api.user.User;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import java.time.Instant;
+import java.util.UUID;
+
+@Entity
+@Table(name = "refresh_tokens")
+public class RefreshToken {
+
+    @Id
+    private UUID id;
+
+    @Column(name = "token_hash", nullable = false, unique = true)
+    private String tokenHash;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Column(name = "expires_at", nullable = false)
+    private Instant expiresAt;
+
+    @Column(name = "revoked_at")
+    private Instant revokedAt;
+
+    @Column(name = "created_at", nullable = false)
+    private Instant createdAt;
+
+    protected RefreshToken() {}
+
+    public RefreshToken(UUID id, String tokenHash, User user, Instant expiresAt) {
+        this.id = id;
+        this.tokenHash = tokenHash;
+        this.user = user;
+        this.expiresAt = expiresAt;
+        this.createdAt = Instant.now();
+    }
+
+    public UUID getId() { return id; }
+    public String getTokenHash() { return tokenHash; }
+    public User getUser() { return user; }
+    public Instant getExpiresAt() { return expiresAt; }
+    public Instant getRevokedAt() { return revokedAt; }
+    public Instant getCreatedAt() { return createdAt; }
+
+    public boolean isValid() {
+        return revokedAt == null && Instant.now().isBefore(expiresAt);
+    }
+
+    public void revoke() {
+        this.revokedAt = Instant.now();
+    }
+}

@@ -1,0 +1,31 @@
+# Auto-detect text files and normalize line endings to LF
+* text=auto eol=lf
+
+# Java source
+*.java text diff=java
+*.xml text
+*.properties text
+
+# TypeScript / JavaScript
+*.ts text diff=typescript
+*.tsx text diff=typescript
+*.js text
+*.jsx text
+*.json text
+
+# Web
+*.css text
+*.html text
+*.yml text
+*.yaml text
+*.md text
+
+# Docker
+Dockerfile text
+docker-compose.yml text
+
+# Binary files
+*.jar binary
+*.png binary
+*.jpg binary
+*.ico binary
