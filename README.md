@@ -3,14 +3,45 @@
 [![Java](https://img.shields.io/badge/Java-21-%23ED8B00?logo=openjdk)](https://www.oracle.com/java/)
 [![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.5-%236DB33F?logo=springboot)](https://spring.io/projects/spring-boot)
 [![React](https://img.shields.io/badge/React-19-%2361DAFB?logo=react)](https://react.dev/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-6-%233178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-%234169E1?logo=postgresql)](https://www.postgresql.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-%232496ED?logo=docker)](https://www.docker.com/)
 [![JWT](https://img.shields.io/badge/Auth-JWT-%23000000?logo=jsonwebtokens)](https://jwt.io/)
-[![Vite](https://img.shields.io/badge/Vite-8-%23646CFF?logo=vite)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vitejs.dev/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 **WeekDays** is a dark-first engineering execution platform for planning projects, coordinating teams, and delivering software. It combines a modern React SPA frontend with a production-grade Spring Boot API and PostgreSQL database.
+
+---
+
+## 🚀 Live Demo
+
+| Application | URL |
+|-------------|-----|
+| Frontend | Coming Soon |
+| Backend API | Coming Soon |
+
+> Deployment to Vercel (Frontend), Render (Backend), and Neon (PostgreSQL) is planned.
+
+---
+
+## 🎯 Why I Built WeekDays
+
+WeekDays was built to demonstrate the architecture of a production-ready project management platform using modern full-stack technologies.
+
+The project focuses on:
+
+- Designing scalable REST APIs using Spring Boot
+- Secure JWT authentication and authorization
+- PostgreSQL database design with Flyway migrations
+- Building a responsive React + TypeScript frontend
+- Production-ready Docker containerization
+- Modern deployment using Render, Vercel, and Neon
+- Clean project architecture and documentation
+
+Rather than being a simple CRUD application, WeekDays was designed as a complete SaaS-style engineering project suitable for demonstrating real-world software engineering practices.
+
+---
 
 ---
 
@@ -137,7 +168,7 @@ WeekDays/
 # Prerequisites: Docker 24+ and Docker Compose V2
 
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/weekdays.git
+git clone https://github.com/karthikJKST/weekdays.git
 cd weekdays
 
 # Build and start all services
@@ -245,6 +276,7 @@ WeekDays is configured for production deployment across three managed services:
 | Database | [Neon](https://neon.tech) | PostgreSQL 16 |
 
 See [docs/deployment.md](./docs/deployment.md) for step-by-step deployment instructions.
+> Live deployment URLs will be added after deployment to Vercel, Render, and Neon.
 
 ---
 
@@ -258,6 +290,8 @@ See [docs/deployment.md](./docs/deployment.md) for step-by-step deployment instr
 - **Mobile app** — React Native companion app for on-the-go access
 - **Integrations** — GitHub, GitLab, Slack, Jira connectors
 - **Dark/light theme** — Toggle between dark and light mode (currently dark-first)
+- - **Role-based access control (RBAC)** — Team roles with fine-grained permissions
+- **Audit logs** — Track project and task changes over time
 
 ---
 
